@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>tryretafit.com — Complete Page Inventory & GSC Launch Runbook</title>
+<style>
+  :root{--bg:#0d1420;--pane:#131d2c;--line:#22314a;--ink:#e8eef6;--dim:#93a4bb;--acc:#2dd4a7;--acc2:#f0603a;--code:#0a101b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:32px 16px 80px}
+  .wrap{max-width:880px;margin:0 auto}
+  h1{font-size:26px;margin:0 0 6px;letter-spacing:-.01em}
+  h2{font-size:19px;margin:38px 0 10px;color:var(--acc);letter-spacing:.01em}
+  p{margin:0 0 12px;color:var(--dim)}
+  p b,li b{color:var(--ink)}
+  .toc{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:20px 0}
+  .toc a{color:var(--acc);text-decoration:none;display:inline-block;margin:2px 14px 2px 0;font-weight:600;font-size:14px}
+  .toc a:hover{text-decoration:underline}
+  .blk{position:relative;background:var(--code);border:1px solid var(--line);border-radius:12px;margin:12px 0 20px}
+  .blk pre{margin:0;padding:16px 18px;overflow-x:auto;font:13.5px/1.75 ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:#c9e3d8;white-space:pre}
+  .copy{position:absolute;top:10px;right:10px;background:var(--acc);color:#06251c;border:0;border-radius:8px;font-weight:800;font-size:12.5px;padding:7px 14px;cursor:pointer}
+  .copy:hover{filter:brightness(1.1)}
+  .copy.ok{background:#8ef0d2}
+  .note{background:#182338;border:1px solid var(--line);border-left:4px solid var(--acc2);border-radius:10px;padding:12px 16px;margin:12px 0;color:var(--dim);font-size:14.5px}
+  .note b{color:var(--ink)}
+  ol{color:var(--dim);padding-left:22px}
+  ol li{margin:0 0 10px}
+  .tag{display:inline-block;background:#1b2a42;border:1px solid var(--line);color:var(--acc);border-radius:999px;font-size:12px;font-weight:700;padding:2px 10px;margin-left:8px;vertical-align:middle}
+  details{background:var(--pane);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:10px 0;color:var(--dim);font-size:14px}
+  summary{cursor:pointer;font-weight:700;color:var(--ink)}
+  code{background:#1b2a42;border-radius:5px;padding:1px 6px;font-size:13px;color:#c9e3d8}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>tryretafit.com — all pages, properly</h1>
+<p>Complete inventory + the exact indexing runbook. 45 files on the site → <b>20 pages that must get indexed</b> (below), 25 support files that are deliberately kept out (legal + redirect pages). Updated 2026-07-18.</p>
+
+<div class="toc">
+  <a href="#all">1 · All 20 indexable pages</a>
+  <a href="#sitemap">2 · Sitemap</a>
+  <a href="#excluded">3 · Deliberately NOT indexed</a>
+  <a href="#gsc">4 · GSC setup (3 min)</a>
+  <a href="#order">5 · Request-index order</a>
+</div>
+
+<h2 id="all">1 · All 20 indexable pages <span class="tag">one copy block</span></h2>
+<p>Every URL that should be crawled and indexed. Grouped: hub → reviews → buy → TV per language.</p>
+<div class="blk">
+  <button class="copy" type="button">Copy</button>
+  <pre>https://tryretafit.com/
+https://tryretafit.com/reviews/
+https://tryretafit.com/buy/
+https://tryretafit.com/dragons-den/
+https://tryretafit.com/de/
+https://tryretafit.com/de/erfahrungen/
+https://tryretafit.com/de/kaufen/
+https://tryretafit.com/de/hoehle-der-loewen/
+https://tryretafit.com/da/
+https://tryretafit.com/da/anmeldelser/
+https://tryretafit.com/da/koeb/
+https://tryretafit.com/da/loevens-hule/
+https://tryretafit.com/no/
+https://tryretafit.com/no/anmeldelser/
+https://tryretafit.com/no/kjop/
+https://tryretafit.com/no/lovens-hule/
+https://tryretafit.com/fr/
+https://tryretafit.com/fr/avis/
+https://tryretafit.com/fr/acheter/
+https://tryretafit.com/fr/qui-veut-etre-mon-associe/</pre>
+</div>
+
+<h2 id="sitemap">2 · Sitemap <span class="tag">submit this in GSC</span></h2>
+<div class="blk">
+  <button class="copy" type="button">Copy</button>
+  <pre>https://tryretafit.com/sitemap.xml</pre>
+</div>
+<p>The sitemap already lists exactly these 20 URLs — nothing missing, nothing extra.</p>
+
+<h2 id="excluded">3 · Deliberately NOT indexed — don't panic when these stay out</h2>
+<div class="note"><b>These are supposed to be invisible to Google.</b> If GSC later shows them as "Excluded by noindex" — that is correct behaviour, not a failure.</div>
+<details><summary>20 legal pages (noindex, follow)</summary>
+privacy.html · terms.html · disclaimer.html · contact.html — ×5 languages (root, /de/, /da/, /no/, /fr/). They carry the compliance content but are kept out of the index on purpose (standard affiliate hygiene).</details>
+<details><summary>5 redirect pages (noindex + blocked in robots.txt)</summary>
+/go/ · /de/go/ · /da/go/ · /no/go/ · /fr/go/ — the masked offer-link redirects. Blocked twice (noindex,nofollow + robots Disallow) so the affiliate hop never enters Google.</details>
+
+<h2 id="gsc">4 · GSC setup — one-time, ~3 minutes</h2>
+<ol>
+  <li>Open <b>search.google.com/search-console</b> → Add property → choose <b>URL prefix</b> → enter <code>https://tryretafit.com/</code>.</li>
+  <li>Verification: pick <b>HTML tag</b> → copy the <code>&lt;meta name="google-site-verification" …&gt;</code> line it shows → <b>send it to me</b> → I put it in the site's head and you press Verify 2 minutes later. (Alternative: any other method works too — I control both the site files and the DNS.)</li>
+  <li>Left menu → <b>Sitemaps</b> → paste <code>sitemap.xml</code> → Submit.</li>
+  <li>Start request-indexing in the order below (URL Inspection → paste URL → "Request indexing").</li>
+</ol>
+
+<h2 id="order">5 · Request-index order <span class="tag">~10/day quota</span></h2>
+<p>GSC limits manual requests to roughly 10–12 per day — use them in this order:</p>
+<div class="blk">
+  <button class="copy" type="button">Copy</button>
+  <pre>DAY 1 — the 5 hubs + EN money pages (7)
+https://tryretafit.com/
+https://tryretafit.com/de/
+https://tryretafit.com/da/
+https://tryretafit.com/no/
+https://tryretafit.com/fr/
+https://tryretafit.com/reviews/
+https://tryretafit.com/buy/
+
+DAY 2 — remaining reviews + buy pages (8)
+https://tryretafit.com/de/erfahrungen/
+https://tryretafit.com/de/kaufen/
+https://tryretafit.com/da/anmeldelser/
+https://tryretafit.com/da/koeb/
+https://tryretafit.com/no/anmeldelser/
+https://tryretafit.com/no/kjop/
+https://tryretafit.com/fr/avis/
+https://tryretafit.com/fr/acheter/
+
+DAY 3 — the 5 TV pages
+https://tryretafit.com/dragons-den/
+https://tryretafit.com/de/hoehle-der-loewen/
+https://tryretafit.com/da/loevens-hule/
+https://tryretafit.com/no/lovens-hule/
+https://tryretafit.com/fr/qui-veut-etre-mon-associe/</pre>
+</div>
+<div class="note"><b>Backlink drip starts in parallel</b> (Telegraph → Medium/Substack → rentry, varied anchors, spread over days) — that's what makes Google crawl the rest on its own and keep coming back. Say go and it starts.</div>
+
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var text = btn.parentElement.querySelector('pre').innerText;
+    function done() { btn.textContent = 'Copied ✓'; btn.classList.add('ok');
+      setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 1800); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { btn.textContent = 'Select & copy manually'; }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+});
+</script>
+</body>
+</html>
