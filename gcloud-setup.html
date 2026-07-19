@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Google Indexing API — setup steps</title>
+<style>
+  :root{--bg:#0d1420;--pane:#131d2c;--line:#22314a;--ink:#e8eef6;--dim:#93a4bb;--acc:#2dd4a7;--acc2:#f0603a;--code:#0a101b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:40px 18px 80px}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 6px}
+  p{margin:0 0 14px;color:var(--dim)}
+  b{color:var(--ink)}
+  a{color:var(--acc);word-break:break-word}
+  ol{padding-left:0;list-style:none;counter-reset:s;margin:22px 0 0}
+  ol li{counter-increment:s;position:relative;padding:0 0 22px 46px;margin:0}
+  ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;
+    background:var(--acc);color:#06251c;font-weight:800;display:grid;place-items:center;font-size:15px}
+  ol li b{display:block;margin-bottom:2px;color:var(--ink)}
+  .save{background:#2a1a12;border:1px solid #6b3d20;border-left:4px solid var(--acc2);border-radius:10px;padding:14px 18px;margin:18px 0}
+  .save b{color:#ffb59d}
+  .free{background:#122a22;border:1px solid #1f5a45;border-radius:10px;padding:12px 16px;margin:16px 0;color:#9fe6cc;font-size:15px}
+  code{background:#1b2a42;border-radius:5px;padding:1px 6px;font-size:14px;color:#c9e3d8}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Set up our own Google Indexing API</h1>
+<p>~10 minutes, one time. Do it all in <b>one</b> Google account. The Indexing API is <b>free — no credit card needed.</b></p>
+
+<div class="save"><b>⚠ The one thing to save:</b> whichever Google account (email) you use for step&nbsp;1 — <b>tell me that email</b> at the end. That's the exact thing we lost last time. I'll record it permanently so this never happens again.</div>
+
+<ol>
+<li><b>Pick your account</b><br>Log into the Google account (email) you want to own this — a fresh one is totally fine. Make sure it's the only one active, or note it, so you don't create things under the wrong account.</li>
+
+<li><b>Create a project</b><br>Go to <a href="https://console.cloud.google.com/projectcreate">console.cloud.google.com/projectcreate</a> → Name it <code>retafit-indexing</code> → <b>Create</b> → wait for it to finish, then make sure it's selected in the top bar.</li>
+
+<li><b>Turn on the Indexing API</b><br>Go to <a href="https://console.cloud.google.com/apis/library/indexing.googleapis.com">console.cloud.google.com/apis/library/indexing.googleapis.com</a> → confirm your new project is selected (top bar) → click <b>Enable</b>. (If it asks about billing, it shouldn't for this API — tell me if it does.)</li>
+
+<li><b>Create a service account</b><br>Go to <a href="https://console.cloud.google.com/iam-admin/serviceaccounts">console.cloud.google.com/iam-admin/serviceaccounts</a> → <b>+ Create service account</b> → name it <code>indexer</code> → <b>Create and continue</b> → skip the "grant access" steps → <b>Done</b>.</li>
+
+<li><b>Download its key file</b><br>Click the <code>indexer</code> account you just made → <b>Keys</b> tab → <b>Add key → Create new key → JSON → Create</b>. A <code>.json</code> file downloads. <b>This is the secret — send me the whole contents</b> (open it in Notepad/TextEdit, copy everything, paste to me). I store it locked-down, never on any site or repo.</li>
+
+<li><b>Make it an Owner in Search Console</b><br>In the JSON you'll see <code>"client_email": "indexer@retafit-indexing-…iam.gserviceaccount.com"</code> — copy that robot email. Then GSC → <b>tryretafit.com</b> → Settings → Users and permissions → add that email as <b>Owner</b> (same as you did last time). Ping me if the Owner option is buried and I'll guide you.</li>
+
+<li><b>Tell me the account email</b><br>Reply with (a) the JSON contents from step&nbsp;5, and (b) <b>the Google account email you used in step&nbsp;1.</b> I'll immediately push all 16 pages through the API — and permanently record the account so future-us never loses it.</li>
+</ol>
+
+<div class="free">Once you send those two things, everything after is on me: tokens, submitting the URLs, and watching GSC to show you the before/after.</div>
+</div>
+</body>
+</html>
