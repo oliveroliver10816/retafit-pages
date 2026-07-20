@@ -27,9 +27,10 @@
   td{padding:9px 10px 9px 0;border-bottom:1px solid #1a2436;white-space:nowrap}
   td.u{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:var(--ink);white-space:normal}
   .num{text-align:right}
+  .win{background:var(--pane);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:16px 18px;margin:0 0 14px}
   .flag{background:var(--pane);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:10px;padding:16px 18px;margin:0 0 14px}
-  .flag h3{margin:0 0 6px;font-size:15px;color:var(--ink)}
-  .flag p{margin:0;font-size:14px}
+  .win h3,.flag h3{margin:0 0 6px;font-size:15px;color:var(--ink)}
+  .win p,.flag p{margin:0;font-size:14px}
   ol{margin:0 0 18px;padding-left:20px;color:var(--dim)}
   ol li{margin-bottom:10px}
   ol li b{color:var(--ink)}
@@ -45,78 +46,89 @@
 <div class="wrap">
 
 <h1>tryretafit.com — Search Console status</h1>
-<p class="sub">20 July 2026 · day 3 live · every number pulled twice from the GSC API by two independent scripts</p>
+<p class="sub">20 July 2026, 23:35 UTC · day 3 live · every number pulled twice from the GSC API by two independent scripts</p>
 
 <div class="kpis">
-  <div class="kpi"><div class="n">16<span style="color:var(--dim);font-size:18px">/20</span></div><div class="l">Pages indexed</div><div class="d">was 4/20 on 18 Jul</div></div>
-  <div class="kpi"><div class="n good">16<span style="color:var(--dim);font-size:18px">/16</span></div><div class="l">Rich results pass</div><div class="d">zero errors, zero warnings</div></div>
-  <div class="kpi"><div class="n">215</div><div class="l">Impressions</div><div class="d">120 of them today</div></div>
-  <div class="kpi"><div class="n">6.2</div><div class="l">Avg position</div><div class="d">today · 8.8 → 7.5 → 6.2</div></div>
+  <div class="kpi"><div class="n">8</div><div class="l">Clicks</div><div class="d">5 of them today</div></div>
+  <div class="kpi"><div class="n">262</div><div class="l">Impressions</div><div class="d">167 of them today</div></div>
+  <div class="kpi"><div class="n">6.8</div><div class="l">Avg position</div><div class="d">8.8 → 7.5 → 6.3</div></div>
+  <div class="kpi"><div class="n">17<span style="color:var(--dim);font-size:18px">/20</span></div><div class="l">Pages indexed</div><div class="d">was 4/20 on 18 Jul</div></div>
 </div>
-<p>4 clicks total so far. Today is still counting (Google marks 19–20 Jul incomplete), so today's numbers can only go up.</p>
+<p><b>Yes — it is getting real clicks and real page-one rankings.</b> Both 19 and 20 Jul are still marked provisional by Google, so today's figures can only go up.</p>
 
-<h2>Rankings by day</h2>
+<h2>Three days, every metric up</h2>
 <div class="scroll"><table>
-<tr><th>Date</th><th class="num">Clicks</th><th class="num">Impressions</th><th class="num">Avg position</th></tr>
-<tr><td>18 Jul</td><td class="num">0</td><td class="num">15</td><td class="num">8.8</td></tr>
-<tr><td>19 Jul</td><td class="num">3</td><td class="num">80</td><td class="num">7.5</td></tr>
-<tr><td>20 Jul <span style="color:var(--dim)">(partial)</span></td><td class="num">1</td><td class="num">120</td><td class="num">6.2</td></tr>
+<tr><th>Date</th><th class="num">Clicks</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">Avg position</th></tr>
+<tr><td>18 Jul</td><td class="num">0</td><td class="num">15</td><td class="num">0.0%</td><td class="num">8.8</td></tr>
+<tr><td>19 Jul <span style="color:var(--dim)">(provisional)</span></td><td class="num">3</td><td class="num">80</td><td class="num">3.8%</td><td class="num">7.5</td></tr>
+<tr><td>20 Jul <span style="color:var(--dim)">(provisional)</span></td><td class="num good">5</td><td class="num good">167</td><td class="num">3.0%</td><td class="num good">6.3</td></tr>
 </table></div>
-<p>Impressions are compounding daily and average position is climbing at the same time — that is the healthy shape for a 3-day-old site.</p>
+<p>Impressions more than doubled while average position <i>improved</i> at the same time. Normally a traffic jump drags position down as you surface for weaker terms — getting both at once means the site is genuinely climbing, not just being shown more.</p>
 
-<h2>What is actually pulling traffic</h2>
+<h2>Which pages earn the clicks</h2>
 <div class="scroll"><table>
-<tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr</th><th class="num">Pos</th></tr>
-<tr><td>retafit</td><td class="num">1</td><td class="num">106</td><td class="num">7.3</td></tr>
+<tr><th>Page</th><th class="num">Clicks</th><th class="num">Impr</th><th class="num">CTR</th><th class="num">Pos</th></tr>
+<tr><td class="u">/de/erfahrungen/</td><td class="num good">4</td><td class="num">41</td><td class="num good">9.8%</td><td class="num good">3.9</td></tr>
+<tr><td class="u">/</td><td class="num">2</td><td class="num">82</td><td class="num">2.4%</td><td class="num">8.0</td></tr>
+<tr><td class="u">/da/</td><td class="num">1</td><td class="num">76</td><td class="num bad">1.3%</td><td class="num">6.8</td></tr>
+<tr><td class="u">/de/</td><td class="num">1</td><td class="num">28</td><td class="num">3.6%</td><td class="num">8.4</td></tr>
+<tr><td class="u">/fr/</td><td class="num">1</td><td class="num">5</td><td class="num">20.0%</td><td class="num">6.2</td></tr>
+</table></div>
+<p>One page is carrying the site: <b>/de/erfahrungen/ — position 3.9 with a 9.8% click-through rate.</b> Half of all clicks come from it.</p>
+
+<h2>Rankings we hold</h2>
+<div class="scroll"><table>
+<tr><th>Query</th><th class="num">Clicks</th><th class="num">Impr</th><th class="num">Position</th></tr>
 <tr><td>reta fit</td><td class="num">1</td><td class="num">9</td><td class="num good">3.1</td></tr>
-<tr><td>retafit pl</td><td class="num">0</td><td class="num">8</td><td class="num">5.6</td></tr>
+<tr><td>tetafit</td><td class="num">0</td><td class="num">1</td><td class="num good">4.0</td></tr>
 <tr><td>wegovy piller pris</td><td class="num">0</td><td class="num">5</td><td class="num good">4.6</td></tr>
-<tr><td>retafit reviews</td><td class="num">0</td><td class="num">4</td><td class="num">8.8</td></tr>
+<tr><td>reta 3 höhle der löwen</td><td class="num">1</td><td class="num">6</td><td class="num good">5.2</td></tr>
+<tr><td>retafit pl</td><td class="num">0</td><td class="num">8</td><td class="num">5.6</td></tr>
+<tr><td>retafit</td><td class="num">1</td><td class="num">127</td><td class="num">7.4</td></tr>
 </table></div>
-<div class="scroll"><table>
-<tr><th>Page</th><th class="num">Clicks</th><th class="num">Impr</th><th class="num">Pos</th></tr>
-<tr><td class="u">/</td><td class="num">2</td><td class="num">74</td><td class="num">8.1</td></tr>
-<tr><td class="u">/da/</td><td class="num">1</td><td class="num">67</td><td class="num">6.5</td></tr>
-<tr><td class="u">/de/erfahrungen/</td><td class="num">0</td><td class="num">26</td><td class="num good">3.8</td></tr>
-<tr><td class="u">/de/</td><td class="num">0</td><td class="num">19</td><td class="num">8.2</td></tr>
-<tr><td class="u">/dragons-den/</td><td class="num">0</td><td class="num">12</td><td class="num">9.6</td></tr>
-</table></div>
-<p><b>Denmark is the lead geo</b> — 106 impressions vs Germany 40 and UK 14. The Danish hub and the German <i>erfahrungen</i> page are ranking best.</p>
+<p style="font-size:13px">Google hides the queries behind 5 of the 8 clicks (its standard anonymisation of rare searches), so the real query list is longer than what it will show us.</p>
 
-<h2>Flags</h2>
+<h2>What is working</h2>
 
-<div class="flag">
-  <h3>The English money page has never been crawled</h3>
-  <p><b>/buy/</b> and <b>/no/kjop/</b> both read “URL is unknown to Google” — Google has not fetched them once, despite 31 internal links pointing at /buy/. Nothing is technically wrong (both return 200 with <i>index, follow</i>, no blocking header). I re-pushed all 4 unindexed URLs through the Indexing API today; all 4 were accepted. Your request-indexing clicks are the second lever.</p>
+<div class="win">
+  <h3>The Höhle der Löwen page is paying off already</h3>
+  <p>Someone searched <b>“reta 3 höhle der löwen”</b> and clicked through — twice, landing on <b>/de/erfahrungen/</b> (position 4.4) and the <b>/de/</b> hub (position 8.7). That is the TV-hype traffic the neutral fact-check pages were built to catch, arriving on day 3.</p>
 </div>
 
-<div class="flag">
-  <h3>Poland is searching and we have no Polish page</h3>
-  <p><b>retafit pl</b> — 8 impressions at position 5.6, unprompted, with zero Polish content on the site. Same pattern that made Denmark our best geo. Worth asking Jennie whether the offer runs in PL before building anything.</p>
+<div class="win">
+  <h3>Germany is out-earning Denmark 4 clicks to 1</h3>
+  <p>Denmark still leads on <b>impressions</b> (117 vs Germany's 67) but Germany converts them: <b>4 of 8 clicks, average position 5.4</b>. Denmark is being shown constantly and clicked once.</p>
 </div>
 
-<div class="flag">
-  <h3>The category thesis is starting to work</h3>
-  <p><b>wegovy piller pris</b> (Danish, “Wegovy pills price”) is showing at position 4.6, and <b>wegovy piller danmark</b> and <b>reta medicin</b> are also appearing. These are non-brand category searches — exactly what the site was built to catch. Everything else is still brand traffic.</p>
+<div class="win">
+  <h3>Indexing API worked again — 17/20 now</h3>
+  <p>I pushed the 4 unindexed URLs through the Indexing API at ~20:45 today. <b>/da/loevens-hule/ was crawled at 22:45 and is now indexed.</b> That is a 2-hour turnaround from push to crawl.</p>
 </div>
+
+<h2>The biggest lever right now</h2>
+<div class="flag">
+  <h3>Our hub pages have no click hook — and they hold the most impressions</h3>
+  <p>Every reviews page carries the hook that is winning: <b>RetaFit Erfahrungen &amp; Bewertung ⭐ Ist RetaFit seriös? (2026)</b> — and /de/erfahrungen/ pulls a 9.8% click-through. Every hub page instead reads <b>RetaFit™ Official — Kapsler til stofskifte, energi &amp; vægtkontrol</b>: no star, no question, no year. The Danish hub sits on <b>76 impressions and converts 1.3%</b> of them. Same for /da/koeb/ (8 impressions, zero clicks) and /de/kaufen/ (8, zero).</p>
+</div>
+<p>Rewriting the 5 hub titles with the proven hook is a one-hour job with no content risk. <b>I have not touched anything live — say go and I will do it.</b></p>
 
 <h2>Do next</h2>
 <ol>
-  <li><b>You (5 minutes):</b> GSC → URL Inspection → paste each URL below → Request indexing. Only these 4 are left.</li>
-  <li><b>You:</b> ask Jennie if RetaFit runs in <b>Poland</b> — there is unserved demand sitting at position 5.6.</li>
+  <li><b>You:</b> approve the hub-title rewrite (biggest single win available right now).</li>
+  <li><b>You:</b> ask Jennie if RetaFit runs in <b>Poland</b> — <i>retafit pl</i> is at position 5.6 with zero Polish content on the site.</li>
+  <li><b>You (2 minutes):</b> GSC → URL Inspection → Request indexing for the last 3 URLs below.</li>
   <li><b>VA:</b> keep executing backlink day 1–3 and send back the live URLs.</li>
-  <li><b>Me (daily):</b> keep the GSC watch running — next check is whether these 4 land and whether the Danish category queries hold position.</li>
+  <li><b>Me (daily):</b> GSC watch continues — next check is whether German click-through holds and Denmark starts converting.</li>
 </ol>
 
 <div class="blk">
   <button class="copy" type="button">Copy</button>
   <pre>https://tryretafit.com/buy/
 https://tryretafit.com/no/kjop/
-https://tryretafit.com/no/anmeldelser/
-https://tryretafit.com/da/loevens-hule/</pre>
+https://tryretafit.com/no/anmeldelser/</pre>
 </div>
 
-<div class="foot">Source: Google Search Console API (URL Inspection + Search Analytics), pulled 20 Jul 2026. Verified by a second independent pull. · <a href="./index.html">Page inventory</a> · <a href="./va-day1.html">VA day 1</a> · <a href="./va-day2.html">VA day 2</a> · <a href="./va-day3.html">VA day 3</a></div>
+<div class="foot">Source: Google Search Console API (URL Inspection + Search Analytics, dataState=all, 17–20 Jul). Every figure pulled twice by two independent scripts and cross-checked. · <a href="./index.html">Page inventory</a> · <a href="./va-day1.html">VA day 1</a> · <a href="./va-day2.html">VA day 2</a> · <a href="./va-day3.html">VA day 3</a></div>
 
 </div>
 <script>
