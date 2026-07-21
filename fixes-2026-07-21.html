@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>tryretafit.com — fixes shipped 21 Jul 2026</title>
+<style>
+  :root{--bg:#0d1420;--pane:#131d2c;--line:#22314a;--ink:#e8eef6;--dim:#93a4bb;--acc:#2dd4a7;--warn:#f0603a;--amber:#e8b64c;--code:#0a101b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:40px 18px 80px}
+  .wrap{max-width:820px;margin:0 auto}
+  h1{font-size:25px;margin:0 0 4px;letter-spacing:-.02em}
+  .sub{color:var(--dim);font-size:14px;margin:0 0 30px}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.09em;color:var(--acc);margin:38px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  p{margin:0 0 16px;color:var(--dim)}
+  b{color:var(--ink)}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--code);padding:2px 6px;border-radius:5px;color:#c9e3d8}
+  .scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 18px}
+  th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);font-weight:700;padding:0 12px 8px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 12px 10px 0;border-bottom:1px solid #1a2436;vertical-align:top}
+  .item{background:var(--pane);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:16px 18px;margin:0 0 14px}
+  .item.warn{border-left-color:var(--warn)}
+  .item.hold{border-left-color:var(--amber)}
+  .item h3{margin:0 0 6px;font-size:15px;color:var(--ink)}
+  .item p{margin:0 0 8px;font-size:14px}
+  .item p:last-child{margin:0}
+  .tag{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;padding:3px 8px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  .t-fix{background:rgba(45,212,167,.15);color:var(--acc)}
+  .t-hold{background:rgba(232,182,76,.15);color:var(--amber)}
+  ol{margin:0 0 18px;padding-left:20px;color:var(--dim)}ol li{margin-bottom:10px}ol li b{color:var(--ink)}
+  .foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--dim)}
+  a{color:var(--acc)}
+  .old{color:var(--dim);text-decoration:line-through}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>tryretafit.com — what shipped today</h1>
+<p class="sub">21 July 2026 · commit <code>d5afd9f</code> · 27 files · all changes verified live</p>
+
+<h2>1 · Hub titles — the lever you approved</h2>
+<p>Every reviews page already carried the hook that is winning (<code>⭐</code> + a question + the year — <code>/de/erfahrungen/</code> pulls 9.8% click-through). All five hubs were plain, 68–78 characters long, and therefore truncating in results — while holding the most impressions on the site.</p>
+<div class="scroll"><table>
+<tr><th>Page</th><th>Now live</th><th>Chars</th></tr>
+<tr><td><code>/</code></td><td>RetaFit™ Official Site ⭐ Metabolism Capsules &amp; Prices (2026)</td><td>60</td></tr>
+<tr><td><code>/de/</code></td><td>RetaFit™ offizielle Website ⭐ Stoffwechselkapseln &amp; Preise (2026)</td><td>65</td></tr>
+<tr><td><code>/da/</code></td><td>RetaFit™ officiel hjemmeside ⭐ stofskiftekapsler, pris (2026)</td><td>61</td></tr>
+<tr><td><code>/no/</code></td><td>RetaFit™ offisiell nettside ⭐ stoffskiftekapsler, pris (2026)</td><td>61</td></tr>
+<tr><td><code>/fr/</code></td><td>RetaFit™ site officiel ⭐ gélules métabolisme &amp; prix (2026)</td><td>58</td></tr>
+</table></div>
+<p>A native-speaker check caught three real errors in my first draft before anything went live: the Danish was <b>grammatically wrong</b> (<span class="old">officielle side</span> — a definite adjective with no article, and <i>side</i> means "page", not website), the Norwegian used an <b>invented compound</b> that also signalled a fat-burning claim (<span class="old">Forbrenningskapsler</span>), and the German read like a Facebook page rather than a brand site (<span class="old">offizielle Seite</span>).</p>
+
+<h2>2 · A blocker that would have cost you money on the paid launch</h2>
+<div class="item warn">
+  <h3>Google click IDs were being thrown away<span class="tag t-fix">fixed</span></h3>
+  <p>Six files read <code>gbraid</code> / <code>wbraid</code> — the click IDs Google sends instead of <code>gclid</code> on iOS and other privacy-restricted traffic — but nothing ever saved them. Two things broke on every one of those clicks:</p>
+  <p>① The conversion was tagged with the generic organic label instead of the click ID, so it <b>could not be uploaded back into Google Ads</b> — that traffic would have looked like it converted nothing.</p>
+  <p>② The popup script classified those paid visitors as organic, which switches on the aggressive mode: <b>back-button hijacking and a popup that re-fires on every exit attempt</b>. That is a landing-page disapproval risk, aimed squarely at the $500/day campaign that is queued to launch.</p>
+  <p>One line to fix. Proven end to end: a visit with <code>?gbraid=TESTGB123</code> now produces <code>?sub1=TESTGB123</code>, while organic visitors still correctly produce <code>?sub1=retafituk</code>.</p>
+</div>
+
+<h2>3 · Illegal health claims on two markets</h2>
+<div class="item warn">
+  <h3>Danish and Norwegian were making fat-burning claims<span class="tag t-fix">fixed</span></h3>
+  <p>English, German and French all correctly say <i>fat metabolism</i>. Danish and Norwegian had drifted to <b>fedtforbrænding</b> and <b>fettforbrenning</b> — literal fat-<i>burning</i> — which is an unauthorised health claim under EU Regulation 1924/2006. Norwegian also promised <b>"sunn vektnedgang"</b> (healthy weight loss) in two places.</p>
+  <p>This broke the project's own hard line in two of five languages, on the market with our second-highest impressions. Rewritten by a native editor to match the wording the other three languages already use — 46 replacements across 9 files, with all 65 FAQ pairs kept word-for-word identical between the visible text and the structured data.</p>
+  <p>Live check after deploy: zero occurrences remaining on either market.</p>
+</div>
+
+<h2>4 · Also fixed</h2>
+<div class="item">
+  <h3>Structured data, hreflang and speed<span class="tag t-fix">fixed</span></h3>
+  <p>Our top-earning page <code>/de/erfahrungen/</code> showed 9 questions to visitors but only declared 8 to Google — the ninth is now in the markup. Site-wide re-check: <b>163 question/answer pairs, zero mismatches</b>.</p>
+  <p>Austrian and Swiss language targeting was missing from 15 of 20 pages (only the hubs had it). 60 below-the-fold images now load lazily, and the popup image finally has dimensions so it stops shifting the layout.</p>
+  <p>Sitemap dates were bumped on <b>only the 9 pages whose content genuinely changed</b>, and all 10 affected URLs were pushed through the Indexing API.</p>
+</div>
+
+<h2>5 · Backlinks — including two that were silently dead</h2>
+<div class="item warn">
+  <h3>Two of the existing backlinks never worked at all<span class="tag t-fix">fixed</span></h3>
+  <p>Both <code>write.as</code> assets from the first wave <b>never rendered</b>. The page shows raw <code>**bold**</code> and <code>[anchor](url)</code> as plain text — meaning <b>zero actual links</b>. So wave 1 was 5 backlinks, not 6, and the roundup page meant to get them all crawled was passing nothing.</p>
+  <p>The original check only looked for the web address as <i>text</i> on the page — it never confirmed a real link tag existed. I have rebuilt the roundup properly and it now points at all 5 surviving articles plus the new English one.</p>
+</div>
+<div class="item">
+  <h3>Three new backlinks, aimed at the page Google won't crawl<span class="tag t-fix">live</span></h3>
+  <p><code>/buy/</code> is still the one page Google has never fetched, so both English links point straight at it. New this wave: an English price breakdown on <b>rentry.co</b>, a German piece on what can and cannot actually be bought, and a Danish piece on the TV rumour. All anchors verified as real links.</p>
+  <p><b>Worth knowing:</b> every telegra.ph link is <code>rel="nofollow"</code> — those pages help Google <i>discover</i> our pages but pass no authority. <b>rentry.co gives a proper follow link</b>, so future waves should favour it.</p>
+</div>
+<div class="item">
+  <h3>Correction: our indexer cannot index backlinks<span class="tag t-hold">note</span></h3>
+  <p>The Indexing API only accepts URLs on domains we own, and we do not own telegra.ph or rentry.co. The only way to get a third-party backlink crawled is crawl-bait — a page that links to it — which is what Link-Spotter does and what I rebuilt today.</p>
+</div>
+
+<h2>6 · Three things I did not touch — your call</h2>
+<div class="item hold">
+  <h3>Our review markup is self-serving<span class="tag t-hold">needs decision</span></h3>
+  <p>Since the "RetaFit Official" pivot we are the brand's affiliate, and Google's rules exclude review snippets written by the seller or its affiliate. The test still passes — which is exactly why this hasn't surfaced — but the risk is a <b>manual action that wipes the rich results we just earned</b> across 9 pages. Fix is to drop the review block and keep the offer block. The visible "4.7 / our verdict" copy can stay.</p>
+</div>
+<div class="item hold">
+  <h3>The struck-through prices don't correspond to anything<span class="tag t-hold">needs decision</span></h3>
+  <p>The crossed-out £229 and £152 (and their euro/kroner equivalents) match no real price — they look back-solved from the store's percentage claims. Five bottles at the single-bottle price is £369.25, not £229. The copy then says the bundle <b>"saves £100 versus single bottles"</b> when the real difference is £240.25. Norwegian claims 1559 kr against a true 4125 kr. Danish is the only one that computes correctly.</p>
+  <p>Under UK and EU pricing rules a struck-through price must be a genuine former price. This is precisely the consumer-watchdog exposure that got Ozem+ listed. Safest fix: drop the fake anchors and keep the store's real percentages and true per-bottle prices, which are all correct.</p>
+</div>
+<div class="item hold">
+  <h3>Five filled stars against a 4.7 rating<span class="tag t-hold">needs decision</span></h3>
+  <p>Ten pages render ★★★★★ next to a stated 4.7, plus "loved across the UK &amp; EU" — when no real customer reviews exist anywhere. Should show 4.7 stars and be labelled clearly as our editorial view.</p>
+</div>
+
+<h2>Do next</h2>
+<ol>
+  <li><b>You:</b> decide on the three items above. The review markup is the urgent one.</li>
+  <li><b>You:</b> ask Jennie whether RetaFit runs in <b>Poland</b> — <code>retafit pl</code> is at position 5.6 with zero Polish content.</li>
+  <li><b>Me:</b> watch whether hub click-through lifts off its baseline (<code>/da/</code> was 1.3% on 76 impressions, <code>/</code> 2.4% on 82) and whether <code>/buy/</code> finally gets crawled.</li>
+  <li><b>VA:</b> continue backlink days 1–3 — and favour rentry over telegra.ph from here.</li>
+</ol>
+
+<div class="foot">Every figure pulled from the Google Search Console API and independently re-pulled before publishing. · <a href="./gsc-2026-07-20.html">GSC status 20 Jul</a> · <a href="./index.html">Page inventory</a> · <a href="./va-day1.html">VA day 1</a> · <a href="./va-day2.html">VA day 2</a> · <a href="./va-day3.html">VA day 3</a></div>
+
+</div>
+</body>
+</html>
