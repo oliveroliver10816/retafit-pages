@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Backlink Indexer — handoff (temporary)</title>
+<style>
+  :root{--bg:#0d1420;--pane:#131d2c;--line:#22314a;--ink:#e8eef6;--dim:#93a4bb;--acc:#2dd4a7;--warn:#f0603a;--code:#0a101b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:40px 18px 90px}
+  .wrap{max-width:660px;margin:0 auto}
+  h1{font-size:23px;margin:0 0 4px}
+  .sub{color:var(--dim);font-size:14px;margin:0 0 6px}
+  .warn{background:rgba(240,96,58,.12);border:1px solid var(--warn);border-radius:10px;padding:12px 15px;font-size:13px;color:#ffd9cf;margin:16px 0 26px}
+  .field{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px}
+  .lab{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--acc);font-weight:800;margin:0 0 10px}
+  .row{display:flex;gap:10px;align-items:stretch}
+  .val{flex:1;background:var(--code);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;color:#c9e3d8;overflow-x:auto;white-space:pre-wrap;word-break:break-word;display:flex;align-items:center}
+  .val.pw{font-size:20px;letter-spacing:.06em;color:#fff}
+  button{background:var(--acc);color:#06251c;border:0;border-radius:8px;font-weight:800;font-size:13px;padding:0 18px;cursor:pointer;white-space:nowrap}
+  button:hover{filter:brightness(1.08)}button.ok{background:#8ef0d2}
+  .note .val{white-space:pre-wrap;line-height:1.55;font-family:inherit;font-size:14px;color:var(--ink)}
+  .foot{margin-top:24px;font-size:12px;color:var(--dim);text-align:center}
+  a{color:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Backlink Indexer — handoff</h1>
+<p class="sub">Copy what you need, then tell me and I'll delete this page.</p>
+<div class="warn">⚠ Temporary page — it holds the tool password in the clear. Delete requested as soon as you've copied it. Do not share this page's link with anyone (share the tool link + password with the VA separately).</div>
+
+<div class="field">
+  <div class="lab">Tool URL</div>
+  <div class="row"><div class="val" id="v1">https://indexer.linkspot-2b4462.workers.dev</div><button data-c="v1">Copy</button></div>
+</div>
+
+<div class="field">
+  <div class="lab">Password</div>
+  <div class="row"><div class="val pw" id="v2">o2y7-6f2i-nc34</div><button data-c="v2">Copy</button></div>
+</div>
+
+<div class="field note">
+  <div class="lab">Message to forward to the VA</div>
+  <div class="row"><div class="val" id="v3">Here's a tool for getting our backlinks crawled. Go to https://indexer.linkspot-2b4462.workers.dev and sign in with the password I'll send separately. Paste your backlink URLs (the Telegraph / rentry / blog pages that contain our link) one per line, then click Submit & Index. That's it — the system handles the rest. Don't paste our main website pages here, only the backlink pages. The table shows when Google has crawled each one.</div><button data-c="v3">Copy</button></div>
+</div>
+
+<p class="foot">Once you've copied everything, say "delete it" and this page is gone.</p>
+</div>
+<script>
+document.querySelectorAll('button[data-c]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var text=document.getElementById(btn.getAttribute('data-c')).innerText;
+    function done(){btn.textContent='Copied ✓';btn.classList.add('ok');setTimeout(function(){btn.textContent='Copy';btn.classList.remove('ok');},1600);}
+    function fb(){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');done();}catch(e){btn.textContent='copy manually';}document.body.removeChild(ta);}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(done,fb);}else{fb();}
+  });
+});
+</script>
+</body>
+</html>
