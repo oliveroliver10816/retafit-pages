@@ -21,29 +21,10 @@
 </head>
 <body>
 <div class="wrap">
-<h1>Pages to re-index — tryretafit.com</h1>
-<p><b>Updated 21 Jul 2026: 19 of 20 pages are now indexed.</b> Only <code>/buy/</code> is left — Google still has not fetched it once, despite 31 internal links and two new external ones. In GSC: URL Inspection → paste → Request indexing. It has also been pushed through the Indexing API again. See <a href="./fixes-2026-07-21.html" style="color:#2dd4a7">fixes shipped 21 Jul</a> and the <a href="./gsc-2026-07-20.html" style="color:#2dd4a7">20 Jul status page</a>.</p>
-<div class="blk">
-  <button class="copy" type="button">Copy</button>
-  <pre>https://tryretafit.com/buy/</pre>
+<h1>tryretafit.com — page inventory</h1>
+<p><b>Updated 22 Jul 2026: all 20 pages are indexed and all 20 pass rich results.</b> <code>/buy/</code> was the last holdout and was crawled at 15:43 UTC today. Nothing left to request — this list is now empty.</p>
+<p>Latest status: <a href="./gsc-2026-07-22.html" style="color:#2dd4a7"><b>GSC status 22 Jul</b></a> — 73 clicks, 1,004 impressions, and one finding that needs your decision.</p>
+<p style="font-size:13px">Other pages: <a href="./gsc-2026-07-20.html" style="color:#2dd4a7">GSC status 20 Jul</a> · <a href="./fixes-2026-07-21.html" style="color:#2dd4a7">Fixes shipped 21 Jul</a> · <a href="./va-day1.html" style="color:#2dd4a7">VA day 1</a> · <a href="./va-day2.html" style="color:#2dd4a7">VA day 2</a> · <a href="./va-day3.html" style="color:#2dd4a7">VA day 3</a></p>
 </div>
-<p style="font-size:13px">Other pages: <a href="./fixes-2026-07-21.html" style="color:#2dd4a7">Fixes shipped 21 Jul</a> · <a href="./gsc-2026-07-20.html" style="color:#2dd4a7">GSC status 20 Jul</a> · <a href="./va-day1.html" style="color:#2dd4a7">VA day 1</a> · <a href="./va-day2.html" style="color:#2dd4a7">VA day 2</a> · <a href="./va-day3.html" style="color:#2dd4a7">VA day 3</a></p>
-</div>
-<script>
-document.querySelector('.copy').addEventListener('click', function () {
-  var btn = this, text = btn.parentElement.querySelector('pre').innerText;
-  function done() { btn.textContent = 'Copied ✓'; btn.classList.add('ok');
-    setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 1800); }
-  function fallback() {
-    var ta = document.createElement('textarea');
-    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.focus(); ta.select();
-    try { document.execCommand('copy'); done(); } catch (e) { btn.textContent = 'Select & copy manually'; }
-    document.body.removeChild(ta);
-  }
-  if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, fallback); }
-  else { fallback(); }
-});
-</script>
 </body>
 </html>
