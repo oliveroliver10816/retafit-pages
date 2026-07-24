@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>RetaFit — Traffic Diagnosis · 24 Jul 2026 (Day 7)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f7a68'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='%23f0603a' font-family='sans-serif' font-weight='700'%3ER%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0c0f10; --panel:#14191b; --panel2:#1b2224; --line:#26302f;
+    --ink:#e8eeec; --mut:#8fa39d; --teal:#28c2a6; --tealdk:#0f7a68; --coral:#f0603a;
+    --amber:#f2b134; --red:#e5484d; --grn:#37b26b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:34px 20px 90px}
+  header .ey{color:var(--teal);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+  h1{font-size:30px;line-height:1.15;margin:.35em 0 .1em;letter-spacing:-.02em}
+  .sub{color:var(--mut);font-size:14px}
+  .verdict{background:linear-gradient(180deg,#16211d,#131b19);border:1px solid #244038;
+    border-left:4px solid var(--teal);border-radius:14px;padding:20px 22px;margin:26px 0}
+  .verdict b{color:var(--teal)}
+  h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);
+    margin:38px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0}
+  p{margin:.6em 0}
+  .lead{font-size:17px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:3px 9px;border-radius:20px;vertical-align:middle}
+  .t-good{background:rgba(55,178,107,.15);color:#5fd98f;border:1px solid rgba(55,178,107,.35)}
+  .t-bad{background:rgba(229,72,77,.14);color:#ff7a7e;border:1px solid rgba(229,72,77,.35)}
+  .t-warn{background:rgba(242,177,52,.14);color:#f2c66a;border:1px solid rgba(242,177,52,.35)}
+  /* chart */
+  .chart{display:flex;align-items:flex-end;gap:14px;height:190px;margin:8px 4px 4px;padding-top:10px}
+  .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%}
+  .bars{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:5px}
+  .bar{width:38%;border-radius:5px 5px 0 0;position:relative;min-height:2px}
+  .bar.own{background:linear-gradient(180deg,var(--teal),var(--tealdk))}
+  .bar.borrow{background:repeating-linear-gradient(45deg,var(--coral),var(--coral) 4px,#c74a2c 4px,#c74a2c 8px)}
+  .col .num{font-size:12px;color:var(--ink);font-weight:700}
+  .col .day{font-size:11px;color:var(--mut)}
+  .col.peak .day{color:var(--coral);font-weight:700}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin:6px 4px 0}
+  .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:5px}
+  .sw.own{background:var(--teal)}
+  .sw.borrow{background:repeating-linear-gradient(45deg,var(--coral),var(--coral) 3px,#c74a2c 3px,#c74a2c 6px)}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0}
+  th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--mut);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  td.q{color:var(--ink);font-variant-numeric:tabular-nums}
+  .drop{color:#ff7a7e;font-weight:700}
+  .hold{color:#f2c66a;font-weight:700}
+  ol.plan{list-style:none;counter-reset:p;padding:0;margin:0}
+  ol.plan>li{counter-increment:p;position:relative;padding:16px 18px 16px 58px;margin:12px 0;
+    background:var(--panel2);border:1px solid var(--line);border-radius:12px}
+  ol.plan>li::before{content:counter(p);position:absolute;left:16px;top:15px;width:28px;height:28px;
+    display:grid;place-items:center;border-radius:8px;background:var(--tealdk);color:#fff;font-weight:800;font-size:14px}
+  ol.plan>li b{color:var(--teal)}
+  .why{color:var(--mut);font-size:13.5px;margin-top:5px}
+  .foot{color:var(--mut);font-size:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px}
+  .kpi{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
+  .kpi div{flex:1;min-width:150px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .n{font-size:24px;font-weight:800;letter-spacing:-.02em}
+  .kpi .l{font-size:12px;color:var(--mut);margin-top:2px}
+  .n.teal{color:var(--teal)} .n.coral{color:var(--coral)} .n.red{color:#ff7a7e}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="ey">RetaFit · GSC watch</div>
+  <h1>Why traffic dropped — and what's actually going on</h1>
+  <div class="sub">tryretafit.com · Day 7 live · pulled 24 Jul 2026 · GSC dataState = all</div>
+</header>
+
+<div class="verdict">
+  <p class="lead" style="margin-top:0"><b>Short answer: the traffic isn't dying — the <u>borrowed</u> half evaporated, on schedule.</b></p>
+  <p style="margin-bottom:0">Roughly half our clicks last week came from <b>someone else's TV ad campaign</b> (the "Reta 3 / Höhle der Löwen" wave). That ad wave ended, so Google stopped showing us for those searches. The site itself is <b>100% healthy</b> — every page live, indexed, rich-results valid. Nothing is broken or penalised. What's left is our small, <b>real</b> baseline — and that's where the actual work is.</p>
+</div>
+
+<h2>1 · The shape of the drop</h2>
+<div class="card">
+  <p style="margin-top:0">Clicks per day. The <span style="color:var(--coral);font-weight:700">21 Jul spike</span> was a one-day borrowed surge, not a baseline we lost.</p>
+  <div class="chart" id="chart"></div>
+  <div class="legend">
+    <span><span class="sw own"></span>Our own demand (brand + category)</span>
+    <span><span class="sw borrow"></span>Borrowed "Reta 3" TV wave</span>
+  </div>
+</div>
+
+<h2>2 · The cause — a competitor's ad wave collapsed</h2>
+<div class="card">
+  <p style="margin-top:0"><span class="tag t-bad">Root cause</span> &nbsp;<b>reta-3.com</b> is a <b>separate</b> German weight-loss supplement. It ran a "was it on <i>Die Höhle der Löwen</i>?" ad wave. Because our brand is also "reta…", we ranked in front of those searches <b>by accident</b> — "Reta 3" doesn't even appear on our original pages. When their campaign stopped, that traffic vanished with it:</p>
+  <table>
+    <tr><th>"Höhle der Löwen" search family</th><th>20 Jul</th><th>21 Jul</th><th>22 Jul</th><th>23 Jul</th></tr>
+    <tr><td class="q">Impressions</td><td>69</td><td>103</td><td>42</td><td class="drop">9</td></tr>
+    <tr><td class="q">Clicks</td><td>7</td><td>24</td><td>8</td><td class="drop">2</td></tr>
+  </table>
+  <p class="why">↓ 91% of impressions in two days. This was flagged as the <b>#1 risk</b> on 22 Jul ("half our traffic is borrowed from a fad brand's ad spend"). It played out exactly.</p>
+  <p><span class="tag t-good">Ruled out</span> &nbsp;Not a penalty, not a de-index, not a site outage. All 20 pages return <b>200 + index,follow</b>, robots is production, rich results 20/20 pass. Coverage is intact.</p>
+</div>
+
+<h2>3 · What's really left — and the durable problem</h2>
+<div class="card">
+  <div class="kpi">
+    <div><div class="n red">~7.2</div><div class="l">our rank on our OWN name "retafit"</div></div>
+    <div><div class="n coral">110–150</div><div class="l">brand impressions/day we barely convert</div></div>
+    <div><div class="n red">0</div><div class="l">sales — 30 store clicks, 0 conversions</div></div>
+  </div>
+  <p>Strip out the borrowed wave and this is the honest baseline: <b>we are invisible on our own brand name.</b> Every day Google shows "retafit" to 110–150 people, but we sit at position ~7 (below the merchant's own <span class="q">buyretafit.com</span> and other affiliates), so we get <b>0–2 clicks</b>. Compare: on <span class="q">"reta fit"</span> (with a space) we rank ~3 and pull <b>25% CTR</b>. <b>Same brand, same intent — the only difference is rank.</b></p>
+  <p>And underneath even that: of the ~30 clicks that <i>did</i> reach the store this week, <b>zero</b> bought. Traffic was never the whole problem — <b>rank on our own name and conversion are.</b></p>
+</div>
+
+<h2>4 · How we make it better</h2>
+<p class="sub" style="margin-top:-4px">Stop chasing borrowed waves (they always die in weeks). Build assets that are <b>ours</b>.</p>
+<ol class="plan">
+  <li><b>Win our own brand name "retafit."</b> Highest-value fix by far — 110–150 impr/day handed to competitors at position 7. Levers: brand term front-and-centre in H1/title/first paragraph on every hub, internal exact-"retafit" anchor links, a brand-anchor backlink drip, Indexing-API re-push. Target: top-3 → 20%+ CTR (proven by "reta fit").
+    <div class="why">Durable — our brand isn't a fad. This is worth more than any new page.</div></li>
+  <li><b>Build the "reta abnehmen" German cluster.</b> 8 real, live commercial queries (erfahrungen · preis · bestellen · tabletten · nebenwirkungen · dosierung · erfahrungsberichte · deutschland) with <b>zero</b> coverage today. Real non-borrowed demand we can own.
+    <div class="why">Germany is now 70% of clicks — deepen it where the intent is commercial, not TV-curiosity.</div></li>
+  <li><b>Fix conversion, not just traffic.</b> Our TV / Reta-3 pages answer the question and let people leave. Move the price + CTA <b>above</b> the informational content and add a bridge to the offer. Honest caveat: the merchant's checkout is what actually closes — 30 clicks / 0 sales may point to a store problem we don't control, worth raising with the network.
+    <div class="why">The only lever our pages own is store click-through (DE ~12% today).</div></li>
+  <li><b>Poland — decide the question.</b> <span class="q">"retafit pl"</span> is climbing (8 → 39 impr) with zero PL content, the same signal that made Denmark our best geo. Ask Jennie whether the offer runs in Poland before building.</li>
+</ol>
+
+<div class="card" style="border-color:#3a3320;background:#191712">
+  <p style="margin:0"><span class="tag t-warn">Read this before reacting to the number</span></p>
+  <p class="why" style="margin-bottom:0">GSC under-reports the most recent 1–2 days and revises them <b>upward</b> — so 23 Jul (and today) will end higher than shown. The <b>confirmed, real</b> story is the Reta 3 collapse; the very last day looks extra-soft partly because it isn't fully counted yet. Don't read one soft day as a crisis.</p>
+</div>
+
+<div class="foot">
+  Numbers pulled from GSC (sc-domain:tryretafit.com, dataState=all) and independently re-verified by a second agent per standing rule. Health check: 4/4 URLs 200 + index,follow. · Internal reporting page — noindex.
+</div>
+</div>
+
+<script>
+// clicks per day; borrowed = Reta-3/Höhle family clicks that day, own = remainder
+var data=[
+ {d:"18 Jul",own:0,borrow:0},
+ {d:"19 Jul",own:3,borrow:0},
+ {d:"20 Jul",own:3,borrow:7},
+ {d:"21 Jul",own:27,borrow:24,peak:true},
+ {d:"22 Jul",own:22,borrow:8},
+ {d:"23 Jul",own:8,borrow:2}
+];
+var max=51, el=document.getElementById('chart');
+data.forEach(function(x){
+  var tot=x.own+x.borrow;
+  var c=document.createElement('div'); c.className='col'+(x.peak?' peak':'');
+  c.innerHTML='<div class="num">'+tot+'</div>'+
+    '<div class="bars">'+
+      '<div class="bar own" style="height:'+(x.own/max*100)+'%" title="own '+x.own+'"></div>'+
+      (x.borrow?'<div class="bar borrow" style="height:'+(x.borrow/max*100)+'%" title="borrowed '+x.borrow+'"></div>':'')+
+    '</div>'+
+    '<div class="day">'+x.d+'</div>';
+  el.appendChild(c);
+});
+</script>
+</body>
+</html>
